@@ -8,6 +8,7 @@ repository = "https://github.com/pac96/code2040-challenge"
 Connects to the CODE2040 challenge endpoint and sends the required
 data in JSON format. 
 
+For step 1 of the CODE2040 API Challenge
 """
 def connect():
     # Connect to the challenge endpoint
@@ -19,7 +20,7 @@ def connect():
     data = urllib.urlencode(json)
     req = urllib2.Request(challenge_endpoint, data)
     response = urllib2.urlopen(req)
-    print "RESPONSE: " + response
+    print "Response from API: " + response.read()
 
 
 
