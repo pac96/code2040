@@ -1,5 +1,4 @@
-import urllib
-import urllib2
+import requests
 
 api_token = "dc9daf749ac1b14787b989fe1b97d42c"
 repository = "https://github.com/pac96/code2040-challenge"
@@ -17,10 +16,8 @@ def connect():
     # Send JSON with token and github repository
     json = {"token" : api_token, 
             "github" : repository}
-    data = urllib.urlencode(json)
-    req = urllib2.Request(challenge_endpoint, data)
-    response = urllib2.urlopen(req)
-    print "Response from API: " + response.read()
+    response = requests.post(challenge_endpoint, data=json)
+    print "Response from API: " + response.content
 
 
 

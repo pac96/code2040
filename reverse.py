@@ -1,5 +1,4 @@
-import urllib
-import urllib2
+import requests
 
 # The code below is for step 2 of the CODE2040 API Challenge
 
@@ -14,11 +13,9 @@ def getStringToReverse():
 
     # Send JSON with token to the endpoint
     json = {"token" : api_token}
-    data = urllib.urlencode(json)
-    req = urllib2.Request(challenge_endpoint, data)
-    response = urllib2.urlopen(req)
+    response = requests.post(challenge_endpoint, data=json)
     # Read in the string that is returned from the endpoint
-    stringToReverse = response.read()
+    stringToReverse = response.content
 
     return stringToReverse
 
@@ -32,10 +29,9 @@ def sendReversedStr(revStr):
     json = {"token" : api_token,
             "string" : revStr
             }
-    data = urllib.urlencode(json)
-    req = urllib2.Request(validate_endpoint, data)
-    response = urllib2.urlopen(req)
-    print "Response from API: " + response.read()
+
+    response = requests.post(validate_endpoint, data=json)
+    print "Response from API: " + response.content
 
 
 
